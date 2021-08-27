@@ -32,7 +32,7 @@ entity.SetNumber(3.14);
 
 ## Executor
 
-This class is to be implemented for each DBMS differently, here I implemented it to support MySQL databases, it is used to execute the queries and to get the results as entity objects, it should implement 2 methods: `Execute` and `ExecuteQuery`.
+This class is to be implemented for each DBMS differently, here I have written 2 implementations one for MySQL and one for Postgres, it is used to execute the queries and to get the results as entity objects, it should implement 2 methods: `Execute` and `ExecuteQuery`.
 
 ## EntityManager
 
