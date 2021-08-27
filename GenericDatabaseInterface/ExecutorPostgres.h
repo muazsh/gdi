@@ -80,11 +80,6 @@ namespace gdi
 		void Execute(const gdi::IQuery& query) const
 		{
 			auto res = PQexec(m_con, query.GetQuery().c_str());
-			if (PQresultStatus(res) != PGRES_COMMAND_OK)
-			{		
-				fprintf(stderr, "DROP DATABASE failed: %s", PQerrorMessage(m_con));	
-			}
-
 		}
 
 		~ExecutorPostgres()
