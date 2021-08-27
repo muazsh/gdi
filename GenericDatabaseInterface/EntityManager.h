@@ -14,19 +14,19 @@ namespace gdi
 		{
 			ToLower(attribute);
 			void* val = std::get<1>(attributes_[attribute])();
-			std::string opt = "";
+			std::string valueAsString = "";
 			auto type = std::get<2>(attributes_[attribute]);
 
-			if (type == "int") opt = std::to_string(*(int*)val);
-			else if (type == "short") opt = std::to_string(*(short*)val);
-			else if (type == "long") opt = std::to_string(*(long*)val);
-			else if (type == "int64") opt = std::to_string(*(long long*)val);
-			else if (type == "float") opt = std::string("'") + std::to_string(*(float*)val) + std::string("'");
-			else if (type == "double") opt = std::string("'") + std::to_string(*(double*)val) + std::string("'");
-			else if (type == "bool") opt = std::to_string(*(bool*)val);
-			else if (type.find("string") != std::string::npos) opt = std::string("'") + *(std::string*)val + std::string("'");
+			if (type == "int") valueAsString = std::to_string(*(int*)val);
+			else if (type == "short") valueAsString = std::to_string(*(short*)val);
+			else if (type == "long") valueAsString = std::to_string(*(long*)val);
+			else if (type == "int64") valueAsString = std::to_string(*(long long*)val);
+			else if (type == "float") valueAsString = std::string("'") + std::to_string(*(float*)val) + std::string("'");
+			else if (type == "double") valueAsString = std::string("'") + std::to_string(*(double*)val) + std::string("'");
+			else if (type == "bool") valueAsString = std::to_string(*(bool*)val);
+			else if (type.find("string") != std::string::npos) valueAsString = std::string("'") + *(std::string*)val + std::string("'");
 
-			return opt;
+			return valueAsString;
 		}
 
 		std::list<std::string> GetColumnNames(const std::string& entityName)
