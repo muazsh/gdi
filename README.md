@@ -1,7 +1,7 @@
 # gdi
 Generic Database Interface
 
-This library aims to provide C++ with a generic interface to manage databases via entity classes, in order to function it is built up based on 4 parts: Entity, EntityManager, Executor and Query builder.
+This library aims to provide C++11 with a generic interface to manage databases via entity classes, in order to function it is built up based on 4 parts: Entity, EntityManager, Executor and Query builder.
 
 ## Entity
 
