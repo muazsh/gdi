@@ -2,16 +2,11 @@
 
 namespace gdi
 {
-    static std::string Name;
-    static std::string Phone;
-    static int Id;
-    static double Number;
-
     ENTITY(MyEntity)
-    ADD(MyEntity, Id)
-    ADD(MyEntity, Number)
-    ADD(MyEntity, Name)
-    ADD_VAR(MyEntity, Phone, 20)
+    ADD(MyEntity, Id, int)
+    ADD(MyEntity, Number, double)
+    ADD(MyEntity, Name, std::string)
+    ADD_VAR(MyEntity, Phone, std::string, 20)
     PRIMARY(MyEntity, "Id")
     END
 }

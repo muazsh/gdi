@@ -29,30 +29,30 @@ class Entity {                                   \
        bool Null(){ return m_null; }\
        std::list<std::string> GetPrimary() const { return m_primary;}
 
-#define ADD_VAR(Entity, Attribute, Length)                           \
+#define ADD_VAR(Entity, Attribute, Type, Length)                           \
    private:                                                                         \
     class Attribute##Class {                                                         \
         public:\
            bool m_null = true;\
-           decltype(Attribute) m_##Attribute##Inner = Attribute;  \
-           decltype(Attribute) Get##Attribute##Inner() { return m_##Attribute##Inner; }\
+           Type m_##Attribute##Inner;  \
+           Type Get##Attribute##Inner() { return m_##Attribute##Inner; }\
 		    Attribute##Class(){\
                                 auto key = std::string(#Entity#Attribute);\
                                 gdi::ToLower(key);\
                                 gdi::attributes_[key] = std::make_tuple(\
-                                [&](void * att){m_##Attribute##Inner = *((decltype(Attribute)*)att);},\
-                                [&]()->decltype(Attribute)*{ return &m_##Attribute##Inner;},\
+                                [&](void * att){m_##Attribute##Inner = *((Type*)att);},\
+                                [&]()->Type*{ return &m_##Attribute##Inner;},\
                                 typeid(m_##Attribute##Inner).name(),\
                                 Length);\
                               }                               \
     };                                                                              \
     Attribute##Class m_##Attribute;                      \
    public:\
-           decltype(Attribute) Get##Attribute() const { return m_##Attribute.m_##Attribute##Inner; }\
-           void Set##Attribute(decltype(Attribute) attribute) { m_null = false; m_##Attribute.m_null = false; m_##Attribute.m_##Attribute##Inner = attribute; }\
+           Type Get##Attribute() const { return m_##Attribute.m_##Attribute##Inner; }\
+           void Set##Attribute(Type attribute) { m_null = false; m_##Attribute.m_null = false; m_##Attribute.m_##Attribute##Inner = attribute; }\
            void Reset##Attribute() { m_##Attribute.m_null = true; }
 
-#define ADD(Entity, Attribute) ADD_VAR(Entity, Attribute, 0) 
+#define ADD(Entity, Attribute, Type) ADD_VAR(Entity, Attribute, Type, 0) 
 
 #define PRIMARY(Entity, ...)\
    Entity(){m_primary = {__VA_ARGS__};\
