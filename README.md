@@ -7,21 +7,16 @@ This library aims to provide C++11 with a generic interface to manage databases 
 
 Via using the supported macros an entity can be declared as a class that represents a table in the database like:
 ```c++
-string Name;
-string Phone;
-int Id;
-double Number;
-
 ENTITY(MyEntity)
-ADD(MyEntity, Id)
-ADD(MyEntity, Number)
-ADD(MyEntity, Name)
-ADD(MyEntity, Phone)
+ADD(MyEntity, Id, int)
+ADD(MyEntity, Number, double)
+ADD(MyEntity, Name, std::string)
+ADD_VAR(MyEntity, Phone, std::string, 20)
 PRIMARY(MyEntity, "Id")
-END 
+END
 ```
 
-Where `Name`, `Phone`, `Id`, `Number` variables must be global or static, and then `MyEntity` class can be used regularly:
+After that declaration `MyEntity` class can be used regularly:
 ```c++
 MyEntity entity;
 entity.SetId(1);
@@ -46,7 +41,7 @@ This class needs an Executor as a dependency. EntityManager manages entity objec
 
 ## Query
 
-This class contains the query to be executed, and it is used to build the query like:
+This class contains the query to be executed, and it is used to build queries like:
 ```c++
 Select("Country").Count("CustomerID").
         From("Customers").
