@@ -39,7 +39,7 @@ This class needs an Executor as a dependency. EntityManager manages entity objec
    -	`UpdateBy(Entity e, …)`: Updates DB rows which have same `e` attributes values where `…` are those attributes names.
    -	`Delete(Entity e)`: Deletes a row from the DB based on the primary key.
 
-## Query
+## Query Builder
 
 This class contains the query to be executed, and it is used to build queries like:
 ```c++
