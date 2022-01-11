@@ -1,7 +1,7 @@
 # gdi
 Generic Database Interface
 
-This library aims to provide C++11 with a generic interface to manage databases via entity classes, in order to function it is built up based on 4 parts: Entity, EntityManager, Executor and Query builder.
+This library aims to provide C++11 with a generic interface to manage databases via entity classes, in order to function it is built up based on 4 parts: Entity, EntityManager, Query Builder and Executor.
 
 ## Entity
 
@@ -25,10 +25,6 @@ entity.SetPhone("12345");
 entity.SetNumber(3.14);
 ```
 
-## Executor
-
-This class is to be implemented for each DBMS differently, here I have written 2 implementations one for MySQL and one for Postgres, it is used to execute the queries and to get the results as entity objects, it should implement 2 methods: `Execute` and `ExecuteQuery`.
-
 ## EntityManager
 
 This class needs an Executor as a dependency. EntityManager manages entity objects and is used to look for, update, insert and delete entities:
@@ -41,7 +37,7 @@ This class needs an Executor as a dependency. EntityManager manages entity objec
 
 ## Query Builder
 
-This class contains the query to be executed, and it is used to build queries like:
+This builder contains the query to be executed, and it builds queries like:
 ```c++
 Select("Country").Count("CustomerID").
         From("Customers").
@@ -49,3 +45,9 @@ Select("Country").Count("CustomerID").
         Having("COUNT(CustomerID)", WhereCondition::GREATER_THAN, "5").
         OrderBy("COUNT(CustomerID) DESC");
 ``` 
+
+## Executor
+
+This class is to be implemented for each DBMS differently, here I have written 2 implementations one for MySQL and one for Postgres, it is used to execute the queries and to get the results as entity objects, it should implement 2 methods: `Execute` and `ExecuteQuery`.
+
+
